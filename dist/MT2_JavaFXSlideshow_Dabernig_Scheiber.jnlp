@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<jnlp spec="1.0" xmlns:jfx="http://javafx.com" href="MT2_JavaFXSlideshow_Dabernig_Scheiber.jnlp">
+  <information>
+    <title>MT2_JavaFXSlideshow_Dabernig_Scheiber</title>
+    <vendor>goerdman</vendor>
+    <description>null</description>
+    <offline-allowed/>
+  </information>
+  <resources>
+    <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
+    <jar href="MT2_JavaFXSlideshow_Dabernig_Scheiber.jar" size="7055" download="eager" />
+  </resources>
+  <applet-desc  width="800" height="600" main-class="com.javafx.main.NoJavaFXFallback"  name="MT2_JavaFXSlideshow_Dabernig_Scheiber" >
+    <param name="requiredFXVersion" value="8.0+"/>
+  </applet-desc>
+  <jfx:javafx-desc  width="800" height="600" main-class="mt2_javafxslideshow_dabernig_scheiber.MT2_JavaFXSlideshow_Dabernig_Scheiber"  name="MT2_JavaFXSlideshow_Dabernig_Scheiber" />
+  <update check="always"/>
+</jnlp>
