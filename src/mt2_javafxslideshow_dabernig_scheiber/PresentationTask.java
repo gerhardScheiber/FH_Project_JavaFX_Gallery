@@ -42,6 +42,8 @@ public class PresentationTask extends Task<Void> {
 
         waitForCompletionOfPictureRemoval();
 
+        System.out.println("presentation ended");
+
         Platform.runLater(() -> PresentationStage.shutdownExistingInstance());
 
         return null;
@@ -78,6 +80,11 @@ public class PresentationTask extends Task<Void> {
 
     public void setPaused(boolean paused) {
         this.paused = paused;
+        if (paused) {
+            System.out.println("presentation paused");
+        } else {
+            System.out.println("presentation resumed");
+        }
     }
 
     public void setOldPictureRemoved(boolean oldPictureRemoved) {

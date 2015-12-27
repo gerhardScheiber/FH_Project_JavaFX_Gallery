@@ -54,12 +54,10 @@ public class PresentationController implements Initializable {
 
     private void startPresentation(File mostRecentDirectory) {
 
-        System.out.println("start presentation");
+        System.out.println("start presentation mode");
         presentationTask = new PresentationTask(mostRecentDirectory, picture -> {
             final ImageView oldImageView = getOldImageView();
-            System.out.println(picture);
             final ImageView newImageView = getAndAddNewImageView(picture);
-            System.out.println(picture);
 
             hideOldImage(oldImageView);
             showNewImage(newImageView);
@@ -103,6 +101,7 @@ public class PresentationController implements Initializable {
 
     private void removeOldImageView(ImageView oldImageView) {
         presentationContainer.getChildren().remove(oldImageView);
+        oldImageView.setImage(null);
     }
 
     public ImageView getOldImageView() {

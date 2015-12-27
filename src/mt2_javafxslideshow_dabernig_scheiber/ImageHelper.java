@@ -30,11 +30,9 @@ public class ImageHelper {
         if (getRatio(image) < 1) {
             double height = getSmallerHeight(image, alternativeBounds);
             imageView.setFitHeight(height);
-            System.out.println("set height " +height);
         } else {
             double width = getSmallerWidth(image, alternativeBounds);
             imageView.setFitWidth(width);
-            System.out.println("set width " +width);
         }
     }
 
