@@ -30,7 +30,6 @@ import javafx.stage.Stage;
 public class MT2_JavaFXSlideshow_Dabernig_Scheiber extends Application {
 
     Stage stage;
-    final DoubleProperty zoomProperty = new SimpleDoubleProperty(200);
 
     @Override
     public void start(Stage pStage) throws Exception {
@@ -46,12 +45,15 @@ public class MT2_JavaFXSlideshow_Dabernig_Scheiber extends Application {
         tp.setPadding(new Insets(25, 25, 25, 25));
         tp.setHgap(25);
 
-        String path = "E:\\Studium\\FH WCISbbM14\\3. Semester\\Medientechnik 2\\Ressourcen\\simplicity50\\";
+        String path = "/home/mikevinmike/Pics/Istanbul-28-02-2015";
 
         File imgDir = new File(path);
         File[] picturesList = imgDir.listFiles();
 
         for (final File pic : picturesList) {
+            if(pic.isDirectory() == true) {
+                continue;
+            }
             ImageView iv = createImageView(pic);
             tp.getChildren().addAll(iv);
         }
@@ -85,53 +87,8 @@ public class MT2_JavaFXSlideshow_Dabernig_Scheiber extends Application {
                     if (mouseEvent.getButton().equals(MouseButton.PRIMARY)) {
 
                         if (mouseEvent.getClickCount() == 1) {
-                            try {
 
-                                ImageView iv = new ImageView();
-                                Image image = new Image(new FileInputStream(img));
-                                iv.setImage(image);
-                                iv.setStyle("-fx-background-color: DARKGREY;");
-                                iv.setFitHeight(stage.getHeight() - 550);
-                                iv.setFitWidth(stage.getWidth() - 150);
-                                iv.setPreserveRatio(true);
-                                iv.setSmooth(true);
-                                iv.setCache(true);
-
-                                BorderPane bp = new BorderPane();
-                                bp.setCenter(iv);
-                                bp.setStyle("-fx-background-color: DARKGREY;");
-                                
-                                zoomProperty.addListener(new InvalidationListener() {
-                                    @Override
-                                    public void invalidated(Observable arg0) {
-                                        iv.setFitWidth(zoomProperty.get() * 4);
-                                        iv.setFitHeight(zoomProperty.get() * 3);
-                                    }
-                                });
-
-                                bp.addEventFilter(ScrollEvent.ANY, new EventHandler<ScrollEvent>() {
-                                    @Override
-                                    public void handle(ScrollEvent event) {
-                                        if (event.getDeltaY() > 0) {
-                                            zoomProperty.set(zoomProperty.get() * 1.11);
-                                        } else if (event.getDeltaY() < 0) {
-                                            zoomProperty.set(zoomProperty.get() / 1.11);
-                                        }
-                                    }
-                                });
-                                
-                                Stage stage = new Stage();
-                                stage.setTitle(img.getName());
-                                stage.setWidth(stage.getWidth());
-                                stage.setHeight(stage.getHeight());
-
-                                Scene scene = new Scene(bp, Color.BLACK);
-                                stage.setScene(scene);
-                                stage.show();
-
-                            } catch (FileNotFoundException e) {
-                                e.printStackTrace();
-                            }
+                                PictureStage.showWithPicture(img);
 
                         }
                     }
