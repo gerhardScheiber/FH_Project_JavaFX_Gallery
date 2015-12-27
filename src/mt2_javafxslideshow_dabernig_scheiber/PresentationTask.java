@@ -10,6 +10,7 @@ public class PresentationTask extends Task<Void> {
 
     private File pictureDirectory;
     private PresentationRunnable switchPictures;
+    private boolean paused = false;
 
     public PresentationTask(File pictureDirectory, PresentationRunnable switchPictures) {
         this.pictureDirectory = pictureDirectory;
@@ -28,11 +29,26 @@ public class PresentationTask extends Task<Void> {
 
             Thread.sleep(3000);
 
+            pauseIfNeeded();
+
             Platform.runLater(() -> switchPictures.run(picture));
         }
 
         return null;
     }
 
+    private void pauseIfNeeded() throws InterruptedException {
+        while(paused == true) {
+            Thread.sleep(200);
+        }
+    }
 
+
+    public boolean isPaused() {
+        return paused;
+    }
+
+    public void setPaused(boolean paused) {
+        this.paused = paused;
+    }
 }

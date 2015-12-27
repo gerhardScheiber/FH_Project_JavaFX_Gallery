@@ -12,6 +12,7 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
+import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.IOException;
 
@@ -43,20 +44,29 @@ public class PresentationStage extends Stage {
             this.setScene(scene);
             this.setFullScreen(true);
 
-            scene.widthProperty().addListener(new ChangeListener<Number>() {
-                @Override public void changed(ObservableValue<? extends Number> observableValue, Number oldSceneWidth, Number newSceneWidth) {
-                    determineStageBounds();
-                }
-            });
-            scene.heightProperty().addListener(new ChangeListener<Number>() {
-                @Override public void changed(ObservableValue<? extends Number> observableValue, Number oldSceneHeight, Number newSceneHeight) {
-                    determineStageBounds();
-                }
-            });
+            registerSceneEvents(scene);
 
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private void registerSceneEvents(Scene scene) {
+        scene.widthProperty().addListener((observableValue, oldSceneWidth, newSceneWidth) -> {
+            determineStageBounds();
+        });
+        scene.heightProperty().addListener((observableValue, oldSceneHeight, newSceneHeight) -> {
+            determineStageBounds();
+        });
+        scene.setOnKeyReleased(event -> {
+            if(event.getCode().getName().equals("Space")) {
+                if(PresentationController.isPaused() == true) {
+                    PresentationController.resume();
+                } else {
+                    PresentationController.pause();
+                }
+            }
+        });
     }
 
     private void determineStageBounds() {

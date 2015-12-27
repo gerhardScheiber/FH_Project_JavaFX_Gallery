@@ -1,19 +1,12 @@
 package mt2_javafxslideshow_dabernig_scheiber;
 
-import javafx.application.Platform;
-import javafx.beans.InvalidationListener;
-import javafx.beans.Observable;
-import javafx.beans.property.DoubleProperty;
-import javafx.beans.property.SimpleDoubleProperty;
-import javafx.concurrent.Task;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -21,6 +14,7 @@ public class PresentationController implements Initializable {
 
     private static PresentationTask presentationTask;
     private static Thread presentationThread;
+    private static BooleanProperty paused = new SimpleBooleanProperty(false);
     @FXML
     private ImageView pictureView;
 //    private ImageView pictureView2;
@@ -28,6 +22,9 @@ public class PresentationController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
+        paused.addListener((observable, oldValue, newValue) -> {
+            presentationTask.setPaused(newValue);
+        });
         startPresentation(PresentationStage.mostRecentDirectory);
 
     }
@@ -53,4 +50,15 @@ public class PresentationController implements Initializable {
         }
     }
 
+    public static void pause() {
+        paused.set(true);
+    }
+
+    public static void resume() {
+        paused.set(false);
+    }
+
+    public static boolean isPaused() {
+        return paused.get();
+    }
 }
