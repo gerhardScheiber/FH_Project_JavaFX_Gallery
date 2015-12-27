@@ -1,4 +1,4 @@
-package mt2_javafxslideshow_dabernig_scheiber;
+package mt2_javafxslideshow_dabernig_scheiber.picturedetail;
 
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.ScrollEvent;
+import mt2_javafxslideshow_dabernig_scheiber.helper.ImageHelper;
 
 import java.net.URL;
 import java.util.ResourceBundle;

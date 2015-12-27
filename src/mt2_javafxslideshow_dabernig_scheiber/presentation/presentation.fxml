@@ -1,7 +1,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.StackPane?>
 <BorderPane xmlns:fx="http://javafx.com/fxml"
-            fx:controller="mt2_javafxslideshow_dabernig_scheiber.PresentationController"
+            fx:controller="mt2_javafxslideshow_dabernig_scheiber.presentation.PresentationController"
             style="-fx-background-color: black;">
     <center>
         <StackPane fx:id="presentationContainer">

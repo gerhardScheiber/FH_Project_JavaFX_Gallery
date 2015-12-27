@@ -1,4 +1,4 @@
-package mt2_javafxslideshow_dabernig_scheiber;
+package mt2_javafxslideshow_dabernig_scheiber.picturedetail;
 
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
@@ -34,6 +34,13 @@ public class PictureStage extends Stage {
         }
     }
 
+    public static void showWithPicture(File picture) {
+
+        mostRecentImage = picture;
+        Stage stage = new PictureStage(picture);
+        stage.show();
+    }
+
     private void determineStageBounds() {
         final double SIZE_OF_SCREEN_IN_PERCENT = 0.9;
         Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
@@ -43,12 +50,5 @@ public class PictureStage extends Stage {
         double y = screenBounds.getMinY() + (screenBounds.getHeight() * (1 - SIZE_OF_SCREEN_IN_PERCENT)) / 2d;
 
         stageBounds = new Rectangle2D(x, y, width, height);
-    }
-
-    public static void showWithPicture(File picture) {
-
-        mostRecentImage = picture;
-        Stage stage = new PictureStage(picture);
-        stage.show();
     }
 }

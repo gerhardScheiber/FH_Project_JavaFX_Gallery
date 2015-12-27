@@ -4,7 +4,8 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.TilePane?>
-<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="mt2_javafxslideshow_dabernig_scheiber.GalleryController">
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="mt2_javafxslideshow_dabernig_scheiber.gallery.GalleryController">
     <top>
         <HBox style="-fx-background-color: LIGHTGREY;">
             <padding><Insets top="10" right="15" bottom="10" left="15"/></padding>

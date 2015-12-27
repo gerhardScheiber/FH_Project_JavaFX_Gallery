@@ -1,7 +1,8 @@
-package mt2_javafxslideshow_dabernig_scheiber;
+package mt2_javafxslideshow_dabernig_scheiber.presentation;
 
 import javafx.application.Platform;
 import javafx.concurrent.Task;
+import mt2_javafxslideshow_dabernig_scheiber.helper.ImageHelper;
 
 import java.io.File;
 

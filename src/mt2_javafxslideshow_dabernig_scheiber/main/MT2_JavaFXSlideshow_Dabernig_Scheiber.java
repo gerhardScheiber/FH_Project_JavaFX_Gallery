@@ -1,4 +1,4 @@
-package mt2_javafxslideshow_dabernig_scheiber;
+package mt2_javafxslideshow_dabernig_scheiber.main;
 
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -23,7 +23,7 @@ public class MT2_JavaFXSlideshow_Dabernig_Scheiber extends Application {
         stage.setWidth(Screen.getPrimary().getVisualBounds().getWidth());
         stage.setHeight(Screen.getPrimary().getVisualBounds().getHeight());
 
-        Parent root = FXMLLoader.load(PictureStage.class.getResource("gallery.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("../gallery/gallery.fxml"));
 
         Scene scene = new Scene(root);
         stage.setScene(scene);

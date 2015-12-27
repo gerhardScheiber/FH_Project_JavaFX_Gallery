@@ -1,9 +1,0 @@
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.BorderPane?>
-<BorderPane fx:controller="mt2_javafxslideshow_dabernig_scheiber.PictureController"
-            xmlns:fx="http://javafx.com/fxml" style="-fx-background-color: DARKGREY;" onScroll="#zoom" fx:id="rootPane">
-    <center>
-        <ImageView fx:id="pictureView" style="-fx-background-color: DARKGREY;"></ImageView>
-    </center>
-
-</BorderPane>

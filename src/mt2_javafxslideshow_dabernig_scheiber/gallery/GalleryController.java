@@ -1,4 +1,4 @@
-package mt2_javafxslideshow_dabernig_scheiber;
+package mt2_javafxslideshow_dabernig_scheiber.gallery;
 
 import javafx.application.Platform;
 import javafx.concurrent.Task;
@@ -12,6 +12,9 @@ import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.TilePane;
 import javafx.stage.DirectoryChooser;
+import mt2_javafxslideshow_dabernig_scheiber.helper.ImageHelper;
+import mt2_javafxslideshow_dabernig_scheiber.picturedetail.PictureStage;
+import mt2_javafxslideshow_dabernig_scheiber.presentation.PresentationStage;
 
 import java.io.File;
 import java.io.FileInputStream;

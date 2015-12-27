@@ -1,4 +1,4 @@
-package mt2_javafxslideshow_dabernig_scheiber;
+package mt2_javafxslideshow_dabernig_scheiber.presentation;
 
 import javafx.animation.FadeTransition;
 import javafx.animation.ParallelTransition;
@@ -11,6 +11,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.util.Duration;
+import mt2_javafxslideshow_dabernig_scheiber.helper.ImageHelper;
 
 import java.io.File;
 import java.net.URL;

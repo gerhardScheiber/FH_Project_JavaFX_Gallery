@@ -1,4 +1,4 @@
-package mt2_javafxslideshow_dabernig_scheiber;
+package mt2_javafxslideshow_dabernig_scheiber.helper;
 
 import javafx.geometry.Rectangle2D;
 import javafx.scene.image.Image;
