@@ -1,0 +1,29 @@
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.TilePane?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<BorderPane fx:controller="mt2_javafxslideshow_dabernig_scheiber.GalleryController" xmlns:fx="http://javafx.com/fxml" >
+    <top>
+        <HBox>
+            <padding><Insets top="10" right="15" bottom="10" left="15"/></padding>
+            <children>
+                <Button text="Load Directory" onAction="#loadGalleryInDirectory"></Button>
+                <Button text="Gallery" onAction="#startPresentation"></Button>
+            </children>
+        </HBox>
+    </top>
+    <center>
+        <ScrollPane style="-fx-background-color: GREY;" fx:id="rootPane" vbarPolicy="AS_NEEDED" hbarPolicy="NEVER" fitToWidth="true">
+            <content>
+                <TilePane hgap="25" fx:id="tilePane">
+                    <padding><Insets top="25" right="25" bottom="25" left="25"/></padding>
+                </TilePane>
+            </content>
+
+        </ScrollPane>
+    </center>
+</BorderPane>
