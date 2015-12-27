@@ -1,0 +1,11 @@
+.idea
+nbproject
+dist
+build
+.DS_Store
+*~
+target
+nbactions.xml
+nb-configuration.xml
+installjammer/*
+!installjammer/SportEVIT-Akk.mpi
