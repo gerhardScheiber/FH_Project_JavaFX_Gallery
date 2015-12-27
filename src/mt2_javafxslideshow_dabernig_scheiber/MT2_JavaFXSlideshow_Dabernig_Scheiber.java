@@ -31,29 +31,17 @@ import javafx.stage.Stage;
  */
 public class MT2_JavaFXSlideshow_Dabernig_Scheiber extends Application {
 
-    Stage stage;
-
     @Override
-    public void start(Stage pStage) throws Exception {
+    public void start(Stage stage) throws Exception {
 
-        stage = pStage;
-//        ScrollPane root = new ScrollPane();
-//        TilePane tp = new TilePane();
-
-//        Button btnGalerie = new Button();
-//        btnGalerie.setText("Gallerie");
-//        tp.getChildren().add(btnGalerie);
-
-
-
-        pStage.setWidth(Screen.getPrimary().getVisualBounds().getWidth());
-        pStage.setHeight(Screen.getPrimary().getVisualBounds().getHeight());
+        stage.setWidth(Screen.getPrimary().getVisualBounds().getWidth());
+        stage.setHeight(Screen.getPrimary().getVisualBounds().getHeight());
 
         Parent root = FXMLLoader.load(PictureStage.class.getResource("gallery.fxml"));
 
         Scene scene = new Scene(root);
-        pStage.setScene(scene);
-        pStage.show();
+        stage.setScene(scene);
+        stage.show();
 
     }
 

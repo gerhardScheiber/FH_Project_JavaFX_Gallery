@@ -14,6 +14,7 @@ import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.TilePane;
+import javafx.stage.DirectoryChooser;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -22,6 +23,7 @@ import java.util.ResourceBundle;
 
 public class GalleryController implements Initializable {
 
+    private File pictureDirectory;
     @FXML
     private TilePane tilePane;
 
@@ -31,20 +33,25 @@ public class GalleryController implements Initializable {
 
     @FXML
     public void loadGalleryInDirectory(ActionEvent actionEvent) {
-        final String path = "/home/mikevinmike/Pics/Istanbul-28-02-2015";
+        pictureDirectory = getDirectoryFromUser();
+
+        if(pictureDirectory == null) {
+            return;
+        }
+
+        tilePane.getChildren().clear();
 
         final Task loadGalleryTask = new Task<Void>() {
 
             @Override
             protected Void call() throws Exception {
-                File imgDir = new File(path);
-                File[] picturesList = imgDir.listFiles();
+                File[] picturesList = pictureDirectory.listFiles();
 
-                for (final File pic : picturesList) {
-                    if(pic.isDirectory() == true) {
+                for (final File picture : picturesList) {
+                    if(picture.isDirectory() == true) {
                         continue;
                     }
-                    final ImageView imageView = createImageView(pic);
+                    final ImageView imageView = createImageView(picture);
 
                     Platform.runLater(() -> tilePane.getChildren().addAll(imageView));
                 }
@@ -58,14 +65,22 @@ public class GalleryController implements Initializable {
         loadGalleryThread.start();
     }
 
+    public File getDirectoryFromUser() {
+        DirectoryChooser chooser = new DirectoryChooser();
+        chooser.setTitle("Load Gallery from Directory");
+        File defaultDirectory = new File(System.getProperty("user.home"));
+        chooser.setInitialDirectory(defaultDirectory);
+        return chooser.showDialog(null);
+    }
+
     private ImageView createImageView(final File imageFile) {
 
-        ImageView iv = null;
+        ImageView imageView = null;
         try {
             final Image image = new Image(new FileInputStream(imageFile), 150, 0, true, true);
-            iv = new ImageView(image);
-            iv.setFitWidth(150);
-            iv.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            imageView = new ImageView(image);
+            imageView.setFitWidth(150);
+            imageView.setOnMouseClicked(new EventHandler<MouseEvent>() {
 
                 @Override
                 public void handle(MouseEvent mouseEvent) {
@@ -76,7 +91,7 @@ public class GalleryController implements Initializable {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return iv;
+        return imageView;
     }
 
     private void onImageClicked(MouseEvent mouseEvent, File imageFile) {
@@ -92,5 +107,10 @@ public class GalleryController implements Initializable {
 
     @FXML
     public void startPresentation(ActionEvent actionEvent) {
+        if(pictureDirectory == null) {
+            return;
+        }
+
+
     }
 }

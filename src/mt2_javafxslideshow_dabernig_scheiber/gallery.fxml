@@ -6,9 +6,9 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
-<BorderPane fx:controller="mt2_javafxslideshow_dabernig_scheiber.GalleryController" xmlns:fx="http://javafx.com/fxml" >
+<BorderPane fx:controller="mt2_javafxslideshow_dabernig_scheiber.GalleryController" xmlns:fx="http://javafx.com/fxml">
     <top>
-        <HBox>
+        <HBox style="-fx-background-color: LIGHTGREY;">
             <padding><Insets top="10" right="15" bottom="10" left="15"/></padding>
             <children>
                 <Button text="Load Directory" onAction="#loadGalleryInDirectory"></Button>
@@ -17,9 +17,9 @@
         </HBox>
     </top>
     <center>
-        <ScrollPane style="-fx-background-color: GREY;" fx:id="rootPane" vbarPolicy="AS_NEEDED" hbarPolicy="NEVER" fitToWidth="true">
+        <ScrollPane fx:id="rootPane" vbarPolicy="AS_NEEDED" hbarPolicy="NEVER" fitToWidth="true" style="-fx-background-color: GREY;">
             <content>
-                <TilePane hgap="25" fx:id="tilePane">
+                <TilePane hgap="25" fx:id="tilePane" style="-fx-background-color: GREY;">
                     <padding><Insets top="25" right="25" bottom="25" left="25"/></padding>
                 </TilePane>
             </content>
