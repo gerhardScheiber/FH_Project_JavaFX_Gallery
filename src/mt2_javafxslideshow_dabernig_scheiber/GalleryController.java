@@ -96,11 +96,8 @@ public class GalleryController implements Initializable {
 
     private void onImageClicked(MouseEvent mouseEvent, File imageFile) {
         if (mouseEvent.getButton().equals(MouseButton.PRIMARY)) {
-
             if (mouseEvent.getClickCount() == 1) {
-
                 PictureStage.showWithPicture(imageFile);
-
             }
         }
     }
@@ -111,6 +108,6 @@ public class GalleryController implements Initializable {
             return;
         }
 
-
+        PresentationStage.start(pictureDirectory);
     }
 }
