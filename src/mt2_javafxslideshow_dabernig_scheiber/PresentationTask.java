@@ -2,15 +2,17 @@ package mt2_javafxslideshow_dabernig_scheiber;
 
 import javafx.application.Platform;
 import javafx.concurrent.Task;
-import javafx.scene.image.ImageView;
 
 import java.io.File;
 
 public class PresentationTask extends Task<Void> {
 
+    private static final long THREE_SECONDS = 3000;
     private File pictureDirectory;
     private PresentationRunnable switchPictures;
     private boolean paused = false;
+    private boolean oldPictureRemoved = true;
+    private boolean newPictureAdded = false;
 
     public PresentationTask(File pictureDirectory, PresentationRunnable switchPictures) {
         this.pictureDirectory = pictureDirectory;
@@ -27,14 +29,45 @@ public class PresentationTask extends Task<Void> {
                 continue;
             }
 
-            Thread.sleep(3000);
+            Platform.runLater(() -> switchPictures.run(picture));
+
+            waitForCompletionOfPictureChange();
+
+            pauseForViewing();
 
             pauseIfNeeded();
-
-            Platform.runLater(() -> switchPictures.run(picture));
         }
 
+        removeLastImage();
+
+        waitForCompletionOfPictureRemoval();
+
+        Platform.runLater(() -> PresentationStage.shutdownExistingInstance());
+
         return null;
+    }
+
+    private void waitForCompletionOfPictureRemoval() throws InterruptedException {
+        while (oldPictureRemoved == false) {
+            Thread.sleep(50);
+        }
+        oldPictureRemoved = false;
+    }
+
+    private void removeLastImage() {
+        Platform.runLater(() -> switchPictures.run(null));
+    }
+
+    private void waitForCompletionOfPictureChange() throws InterruptedException {
+        while (newPictureAdded == false || oldPictureRemoved == false) {
+            Thread.sleep(50);
+        }
+        newPictureAdded = false;
+        oldPictureRemoved = false;
+    }
+
+    private void pauseForViewing() throws InterruptedException {
+        Thread.sleep(THREE_SECONDS);
     }
 
     private void pauseIfNeeded() throws InterruptedException {
@@ -43,12 +76,15 @@ public class PresentationTask extends Task<Void> {
         }
     }
 
-
-    public boolean isPaused() {
-        return paused;
-    }
-
     public void setPaused(boolean paused) {
         this.paused = paused;
+    }
+
+    public void setOldPictureRemoved(boolean oldPictureRemoved) {
+        this.oldPictureRemoved = oldPictureRemoved;
+    }
+
+    public void setNewPictureAdded(boolean newPictureAdded) {
+        this.newPictureAdded = newPictureAdded;
     }
 }

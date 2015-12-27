@@ -1,11 +1,11 @@
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.AnchorPane?>
-<BorderPane fx:controller="mt2_javafxslideshow_dabernig_scheiber.PresentationController"
-            xmlns:fx="http://javafx.com/fxml" style="-fx-background-color: black;" fx:id="rootPane">
+<?import javafx.scene.layout.StackPane?>
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="mt2_javafxslideshow_dabernig_scheiber.PresentationController"
+            style="-fx-background-color: black;">
     <center>
-        <ImageView fx:id="pictureView"></ImageView>
-        <!--<ImageView fx:id="pictureView2"></ImageView>-->
+        <StackPane fx:id="presentationContainer">
+        </StackPane>
     </center>
 
 </BorderPane>

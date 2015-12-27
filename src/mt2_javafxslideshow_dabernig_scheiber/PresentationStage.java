@@ -1,18 +1,12 @@
 package mt2_javafxslideshow_dabernig_scheiber;
 
-import javafx.application.Platform;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
 
-import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.IOException;
 
@@ -20,18 +14,16 @@ public class PresentationStage extends Stage {
 
     public static Rectangle2D stageBounds;
     public static File mostRecentDirectory;
+    private static PresentationStage instance;
 
     public PresentationStage(File pictureDirectory) {
 
+        shutdownExistingInstance();
+        instance = this;
+
         try {
 
-
-            this.setOnCloseRequest(new EventHandler<WindowEvent>() {
-                @Override
-                public void handle(WindowEvent e) {
-                    PresentationController.shutdown();
-                }
-            });
+            this.setOnCloseRequest(e -> PresentationController.shutdown());
 
             Parent root = FXMLLoader.load(PresentationStage.class.getResource("presentation.fxml"));
 
@@ -49,6 +41,20 @@ public class PresentationStage extends Stage {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public static void shutdownExistingInstance() {
+        if (instance == null) {
+            return;
+        }
+        instance.close();
+    }
+
+    public static void start(File pictureDirectory) {
+
+        mostRecentDirectory = pictureDirectory;
+        Stage stage = new PresentationStage(pictureDirectory);
+        stage.show();
     }
 
     private void registerSceneEvents(Scene scene) {
@@ -75,14 +81,6 @@ public class PresentationStage extends Stage {
             return;
         }
         stageBounds = getStageBounds();
-    }
-
-
-    public static void start(File pictureDirectory) {
-
-        mostRecentDirectory = pictureDirectory;
-        Stage stage = new PresentationStage(pictureDirectory);
-        stage.show();
     }
 
     private Rectangle2D getStageBounds() {
