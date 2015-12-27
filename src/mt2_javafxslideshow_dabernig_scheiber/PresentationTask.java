@@ -25,7 +25,7 @@ public class PresentationTask extends Task<Void> {
         File[] picturesList = pictureDirectory.listFiles();
 
         for (final File picture : picturesList) {
-            if(picture.isDirectory() == true) {
+            if (ImageHelper.isImage(picture) == false) {
                 continue;
             }
 

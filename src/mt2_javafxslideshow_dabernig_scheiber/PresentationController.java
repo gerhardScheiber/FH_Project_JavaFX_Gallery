@@ -19,7 +19,6 @@ import java.util.ResourceBundle;
 public class PresentationController implements Initializable {
 
     private static PresentationTask presentationTask;
-    private static Thread presentationThread;
     private static BooleanProperty paused = new SimpleBooleanProperty(false);
     final long DURATION_OF_TRANSITION_IN_MS = 750;
     @FXML
@@ -66,7 +65,7 @@ public class PresentationController implements Initializable {
             showNewImage(newImageView);
         });
 
-        presentationThread = new Thread(presentationTask);
+        Thread presentationThread = new Thread(presentationTask);
         presentationThread.setDaemon(false);
         presentationThread.start();
     }

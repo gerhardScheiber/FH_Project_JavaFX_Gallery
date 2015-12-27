@@ -1,8 +1,6 @@
 package mt2_javafxslideshow_dabernig_scheiber;
 
 import javafx.application.Platform;
-import javafx.beans.property.DoubleProperty;
-import javafx.beans.property.SimpleDoubleProperty;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -12,7 +10,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.TilePane;
 import javafx.stage.DirectoryChooser;
 
@@ -48,7 +45,7 @@ public class GalleryController implements Initializable {
                 File[] picturesList = pictureDirectory.listFiles();
 
                 for (final File picture : picturesList) {
-                    if(picture.isDirectory() == true) {
+                    if (ImageHelper.isImage(picture) == false) {
                         continue;
                     }
                     final ImageView imageView = createImageView(picture);

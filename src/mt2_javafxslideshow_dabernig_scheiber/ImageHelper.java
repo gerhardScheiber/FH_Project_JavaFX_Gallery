@@ -10,6 +10,10 @@ import java.io.FileNotFoundException;
 
 public class ImageHelper {
 
+    private final static String[] SUPPORTED_IMAGE_FORMATS = {
+            "png", "gif", "jpg", "jpeg", "jps", "mpo"
+    };
+
     public static void setUpImageViewWithImage(ImageView imageView, File imageFile, Rectangle2D alternativeBounds) {
         Image image = null;
         try {
@@ -47,4 +51,23 @@ public class ImageHelper {
         return ratio;
     }
 
+    public static boolean isImage(File picture) {
+        if (picture.isDirectory() == true) {
+            return false;
+        }
+        if (picture.getName() == null
+                || picture.getName().contains(".") == false
+                || picture.getName().lastIndexOf('.' ) >= picture.getName().length() - 1) {
+            return false;
+        }
+
+        String suffix = picture.getName().substring(picture.getName().lastIndexOf('.' ) + 1).toLowerCase();
+        for (String supportedImageFormat : SUPPORTED_IMAGE_FORMATS) {
+            if (suffix.equals(supportedImageFormat)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
 }
